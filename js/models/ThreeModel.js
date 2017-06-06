@@ -7,15 +7,21 @@ function ThreeModel(){
 
     var camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 1, 10000);
     var scene = new THREE.Scene();
+    var sceneDepth = new THREE.Scene();
     var renderer = new THREE.WebGLRenderer({antialias:true});//antialiasing is not supported in ff and on mac+chrome
 
     //store all meshes to highlight
     var cells = [];
     var parts = [];
+    var depthParts = [];//used for rendering ambient occlusion
     var basePlane = [];
 
     var animationLoopRunning = false;
     var stopAnimationFlag = false;
+
+    //ambient occlusion
+    var depthMaterial, effectComposer, depthRenderTarget;
+    var ssaoPass;
 
     initialize();
 
@@ -55,6 +61,31 @@ function ThreeModel(){
         renderer.setClearColor(scene.fog.color, 1);
         renderer.setSize(window.innerWidth, window.innerHeight);
 
+        var renderPass = new THREE.RenderPass( scene, camera );
+
+        // Setup depth pass
+        depthMaterial = new THREE.MeshDepthMaterial();
+        depthMaterial.depthPacking = THREE.RGBADepthPacking;
+        depthMaterial.blending = THREE.NoBlending;
+
+        var pars = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter };
+        depthRenderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, pars );
+
+        // Setup SSAO pass
+        ssaoPass = new THREE.ShaderPass( THREE.SSAOShader );
+        ssaoPass.renderToScreen = true;
+        //ssaoPass.uniforms[ "tDiffuse" ].value will be set by ShaderPass
+        ssaoPass.uniforms[ "tDepth" ].value = depthRenderTarget.texture;
+        ssaoPass.uniforms[ 'size' ].value.set( window.innerWidth, window.innerHeight );
+        ssaoPass.uniforms[ 'cameraNear' ].value = camera.near;
+        ssaoPass.uniforms[ 'cameraFar' ].value = camera.far;
+        ssaoPass.uniforms[ 'aoClamp' ].value = 0.3;
+        ssaoPass.uniforms[ 'lumInfluence' ].value = 0.5;
+        // Add pass to effect composer
+        effectComposer = new THREE.EffectComposer( renderer );
+        effectComposer.addPass( renderPass );
+        effectComposer.addPass( ssaoPass );
+
         window.addEventListener('resize', onWindowResize, false);
     }
 
@@ -72,6 +103,9 @@ function ThreeModel(){
             cells.push(object.children[0]);
         } else if (type == "part"){
             parts.push(object);
+            var copy = object.clone();
+            depthParts.push(copy);
+            sceneDepth.add(copy);
         } else if (type == "basePlane"){
             basePlane.push(object);
         }
@@ -84,7 +118,11 @@ function ThreeModel(){
         if (type == "cell"){
             cells.splice(cells.indexOf(objectToRemove.children[0]), 1);
         } else if (type == "part"){
-            parts.splice(parts.indexOf(objectToRemove), 1);
+            var index = parts.indexOf(objectToRemove);
+            parts.splice(index, 1);
+            var copy = depthParts[index];
+            sceneDepth.remove(copy);
+            depthParts.splice(index, 1);
         } else if (type == "basePlane"){
             basePlane.splice(0, basePlane.length);//delete array without removing reference
         }
@@ -98,6 +136,9 @@ function ThreeModel(){
         });
         _.each(parts, function(part){
             scene.remove(part);
+        });
+        _.each(depthParts, function(part){
+            sceneDepth.remove(part);
         });
         cells.splice(0, cells.length);
         parts.splice(0, parts.length);
@@ -140,7 +181,15 @@ function ThreeModel(){
     }
 
     function _render(){
-        renderer.render(scene, camera);
+        // Render depth into depthRenderTarget
+        sceneDepth.overrideMaterial = depthMaterial;
+        renderer.render(sceneDepth, camera, depthRenderTarget, true);
+        // Render renderPass and SSAO shaderPass
+        // sceneDepth.overrideMaterial = null;
+        effectComposer.render();
+
+        //do this instead for no ambient occlusion
+        // renderer.render(scene, camera);
     }
 
     return {//return public properties/methods

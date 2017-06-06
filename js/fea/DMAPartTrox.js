@@ -62,7 +62,7 @@
         tetraTrox.applyMatrix(new THREE.Matrix4().makeScale(unitScale, unitScale, unitScale));
         tetraTrox.applyMatrix(new THREE.Matrix4().makeRotationZ(Math.PI));
         assignUVs(tetraTrox);
-        tetraTrox.computeTangents();
+        tetraTrox.computeFaceNormals();
     });
 
     function DMATetraTroxPart(type, parent){
@@ -89,7 +89,7 @@
         octaTrox.applyMatrix(new THREE.Matrix4().makeScale(unitScale, unitScale, unitScale));
         octaTrox = new THREE.Geometry().fromBufferGeometry(octaTrox);
         assignUVs(octaTrox);
-        octaTrox.computeTangents();
+        octaTrox.computeFaceNormals();
     });
 
     function DMAOctaTroxPart(type, parent){
