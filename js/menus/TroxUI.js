@@ -122,13 +122,6 @@ TroxUI = Backbone.View.extend({
                 <br/><span>Erase</span>\
                 </a>\
         </div>\
-        <div id="troxColors">\
-          <a data-type="red" class="troxColorButton" href="#">red</a>\
-          <a data-type="orange" class="troxColorButton" href="#">orange</a>\
-          <a data-type="blue" class="troxColorButton" href="#">blue</a>\
-          <a data-type="white" class="troxColorButton" href="#">white</a>\
-          <a data-type="black" class="troxColorButton" href="#">black</a>\
-        </div>\
         \
         <div id="troxFooter">\
             <a class="aboutTrox pull-left" href="#"><img class="troxLogo" src="assets/imgs/trox_assets_15.png"></a>\

@@ -148,7 +148,21 @@ a:active {
 }
 
 #troxColors {
-  color: #FFFF00;
+  z-index: 1;
+  clear: both;
+  position: absolute;
+  display: inline-block;
+  height: 300px;
+  top: 50%; /* pin to middle of right side of the page*/
+  margin-top: -150px;
+  right: 0;
+}
+
+#colorPicker ul{
+    right: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 #troxReset{
