@@ -1,0 +1,163 @@
+body{
+    font-family: "Hanken-Light", Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    min-width: 860px;
+    position: relative;
+}
+
+a:link {
+    text-decoration: none;
+    color:white;
+}
+
+a:visited {
+    text-decoration: none;
+    color:white;
+}
+
+a:hover {
+    text-decoration: none;
+    color:white;
+}
+
+a:active {
+    text-decoration: none;
+    color:white;
+}
+
+@font-face {
+  font-family: "Hanken-Light";
+  src: url(../assets/fonts/Hanken-Light.ttf) format("truetype");
+}
+
+.modal-dialog {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.modal-body {
+    overflow-y: auto;
+}
+.modal-footer {
+    margin-top: 0;
+}
+
+.modal-content{
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 0;
+    color: white;
+    border: 0;
+}
+
+.modal-body>p{
+    font-family: "Helvetica Neue",Arial,sans-serif;
+    font-weight: 100;
+    font-size: 16px;
+    padding: 0 100px 20px 33px;
+}
+
+#resetTroxModal{
+    font-size: 24px;
+    text-align: center;
+}
+
+#resetTroxModal a{
+    margin: 14px 45px;
+    display: inline-block;
+    color: white;
+}
+
+.aboutTrox{
+    display:inline-block;
+}
+
+#moreInfoTrox{
+    color: black;
+    font-size: 24px;
+    margin: 14px 24px;
+    z-index: 1;
+    position: absolute;
+    top:0;
+    right:0;
+}
+
+#troxMainLogo{
+    position:absolute;
+    z-index: 1;
+    top:0;
+    left:0;
+}
+
+#troxMainLogo>img{
+    margin: 23px;
+    width:45px;
+}
+
+.troxCellButton, #troxDeleteButton {
+    display: inline-block;
+    color: white;
+    font-size: 14px;
+}
+
+.troxCellButton:hover{
+    color: white;
+}
+
+.troxCellButton>img{
+    height:104px;
+    margin: 0 22px;
+    margin-top: 20px;
+}
+
+.troxHighlight, .troxDeleteHighlight{
+    display:none;
+}
+
+#troxDeleteButton>img{
+    height:104px;
+    margin: 0 23px;
+}
+
+#navRibbon {
+    height:146px;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0);
+    opacity: 1.0;
+}
+
+#troxFooter{
+    background-color:#1f1f1f;
+    width:100%;
+    position:absolute;
+    bottom:0;
+    left:0;
+    height:87px;
+    font-size: 36px;
+}
+
+#navRibbon>.btn-toolbar{
+    z-index: 1;
+    position: relative;
+    margin-left: 70px;
+    display: inline-block;
+    left:auto;
+    right:auto;
+    top:-20px;
+}
+
+#troxColors {
+  color: #FFFF00;
+}
+
+#troxReset{
+    float: right;
+    margin-top: 17px;
+    margin-right: 45px;
+    color:white;
+}
+
+.troxLogo{
+    height:86px;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/analytics.js"></script>
+
+    <!--UI-->
+    <script src="dependencies/jquery-2.1.3.min.js"></script>
+    <script src="dependencies/underscore-min.js"></script>
+
+    <!--backbone model/view framework-->
+    <script src="dependencies/backbone.js"></script>
+
+    <!--flatUI bootstrap theme-->
+    <link href="dependencies/flatUI/css/vendor/bootstrap.min.css" rel="stylesheet"><!-- Loading Bootstrap -->
+    <link href="dependencies/flatUI/css/flat-ui.css" rel="stylesheet"><!-- Loading Flat UI -->
+    <script src="dependencies/flatUI/js/flat-ui.min.js"></script>
+    <!--<script src="dependencies/flatUI/js/vendor/video.js"></script>-->
+
+    <!--threeJS-->
+    <script src="dependencies/three.min.js"></script>
+    <script src="dependencies/OrbitControls.js"></script>
+
+    <!--stl import/export-->
+    <!--<script src="dependencies/loaders/FileSaver.min.js"></script>-->
+    <!--<script src="dependencies/THREE2STL.js"></script>-->
+    <script src="dependencies/loaders/STLLoader.js"></script>
+    <script src="http://threejs.org/examples/js/ShaderSkin.js"></script>
+
+    <!--fea stuff-->
+    <script src="js/fea/DmaCell.js"></script>
+    <script src="js/fea/DmaCellOcta.js"></script>
+    <script src="js/fea/DmaCellTetra.js"></script>
+    <script src="js/fea/DmaPart.js"></script>
+    <script src="js/fea/DMAPartTrox.js"></script>
+
+    <!--models-->
+    <script src="js/models/ThreeModel.js"></script>
+    <script src="js/models/LatticeOcta.js"></script>
+    <script src="js/models/LatticeOther.js"></script>
+    <script src="js/models/Lattice.js"></script>
+    <script src="js/models/BasePlane.js"></script>
+    <script src="js/models/AppState.js"></script>
+
+    <!--views-->
+    <script src="js/menus/TroxUI.js"></script>
+    <script src="js/menus/TroxHeader.js"></script>
+
+    <script src="js/threeViews/Highlighter.js"></script>
+    <script src="js/threeViews/ThreeView.js"></script>
+
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/trox.css">
+
+</head>
+<body>
+
+<a id="troxMainLogo" href="#"><img src="assets/imgs/trox_assets_03.png"></a>
+<a id="moreInfoTrox" href="#">more info</a>
+<div id="navRibbon"></div>
+<div id="threeContainer"></div>
+
+<div class="modal fade" id="resetTroxModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                Are you sure?<br/>
+                <a href="#" id="clearTroxCells">Yes</a><a href="" data-dismiss="modal">No</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="aboutTroxModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-med">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!--<button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                <img class="troxLogo" src="assets/imgs/trox_assets_15.png"><br/>
+                <p>Bacon ipsum dolor amet pork loin tri-tip flank picanha swine. Short loin salami ham t-bone, tongue landjaeger pork belly. Beef ribs leberkas short loin salami fatback ribeye ground round, alcatra shank kevin doner landjaeger beef. Andouille kevin tail jowl.<br/>
+                <br/>
+                Sausage bacon kevin capicola short loin, cow swine. Short loin ground round pancetta picanha ham hock chuck boudin pork loin ball tip rump strip steak. Alcatra tenderloin tri-tip chicken pig pastrami turducken shank ham hock kielbasa prosciutto kevin. Swine ham shankle bacon cupim frankfurter pork loin prosciutto pork chop. Pork belly kielbasa capicola flank.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
