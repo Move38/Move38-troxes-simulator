@@ -6,17 +6,17 @@ var updateStats = function() {
   var numIcosa = getCellCountOfType("icosa");
   var numTroxes = 4*numTetra + 8*numOcta + 20*numIcosa;
 
-	var tetra = document.getElementsByClassName("countTetra");
-	tetra[0].innerHTML = numTetra;
+  updateStatWithType("countTetra", numTetra);
+  updateStatWithType("countOcta", numOcta);
+  updateStatWithType("countIcosa", numIcosa);
+  updateStatWithType("countTroxes", numTroxes);
+};
 
-  var octa = document.getElementsByClassName("countOcta");
-	octa[0].innerHTML = numOcta;
-
-  var icosa = document.getElementsByClassName("countIcosa");
-	icosa[0].innerHTML = numIcosa;
-
-  var troxes = document.getElementsByClassName("countTroxes");
-	troxes[0].innerHTML = numTroxes;
+var updateStatWithType = function(statType, statValue) {
+  var statText = document.getElementsByClassName(statType);
+  _.each(statText, function(text) {
+    text.innerHTML = statValue;
+  });
 };
 
 var getCellCountOfType = function(type) {
