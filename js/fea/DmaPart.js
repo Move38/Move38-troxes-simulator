@@ -17,7 +17,7 @@ var partMaterial = new THREE.MeshLambertMaterial({ color:0xffffff, shading: THRE
 
     DMAPart.prototype._draw = function(){
         if (this.mesh) console.warn("part mesh already in scene");
-        this.mesh = this._makeMeshForType(this.type);
+        this.mesh = this._makeMeshForType(this.type, this.paperType);
         var rotation = this.parentCell.getEulerRotation();
         this.mesh.rotation.set(rotation.x, rotation.y, rotation.z);
         this.updateForScale(this.parentCell.getScale(), this.parentCell.getPosition());

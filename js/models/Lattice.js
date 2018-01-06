@@ -25,7 +25,8 @@ Lattice = Backbone.Model.extend({
         cellType: "octa",
         freeformCellType: "tetra",
         connectionType: "freeformFace",
-        partType: "trox"
+        partType: "trox",
+        paperType: "bluePaper"
     },
 
     //pass in fillGeometry
@@ -464,9 +465,10 @@ Lattice = Backbone.Model.extend({
             if (cell.direction) var direction = new THREE.Vector3(cell.direction.x, cell.direction.y, cell.direction.z);
             if (cell.parentType) var parentType = cell.parentType;
             if (cell.type) var type = cell.type;
+            if (cell.paperType) var paperType = cell.paperType;
 
             if (cell.destroy) cell.destroy();
-            var newCell = self.makeCellForLatticeType(index, scale, parentPos, parentOrientation, direction, parentType, type);
+            var newCell = self.makeCellForLatticeType(index, scale, parentPos, parentOrientation, direction, parentType, type, paperType);
 
             //if (parts) {
             //    //todo make this better

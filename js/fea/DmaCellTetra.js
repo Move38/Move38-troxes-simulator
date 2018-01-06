@@ -106,5 +106,3 @@ DMAFreeFormTetraCell.prototype.zScale = function(scale){
 DMAFreeFormTetraCell.prototype._getGeometry = function(){
     return unitCellGeo2;
 };
-
-

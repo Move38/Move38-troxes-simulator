@@ -32,25 +32,29 @@
 
     var tetraTrox;
 
-    var skin = THREE.ImageUtils.loadTexture('assets/textures/bluePaper.png'); // color is imported
-	skin.wrapS = skin.wrapT = THREE.RepeatWrapping;
-    skin.repeat.set(4,4);
+    var getSkin = function(paperType) {
+      var skin = THREE.ImageUtils.loadTexture('assets/textures/' + paperType + '.png'); // color is imported
+  	  skin.wrapS = skin.wrapT = THREE.RepeatWrapping;
+      skin.repeat.set(4,4);
+      return skin;
+    }
 
     var texture = THREE.ImageUtils.loadTexture( "assets/textures/paperSpecMap2.jpg" );
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.set(5,5);
 
-    var paperMaterial = new THREE.MeshPhongMaterial({
-        map: skin,
-        bumpMap:texture,
-        color: new THREE.Color("#999999"),  // tint the color of the png loaded for material
-        bumpScale:0.4,
-        shininess:10,
-        fog: false,
-        shading:THREE.SmoothShading
-    });
-
-
+    var getPaperMaterial = function(paperType) {
+      var paperMaterial = new THREE.MeshPhongMaterial({
+          map: getSkin(paperType),
+          bumpMap:texture,
+          color: new THREE.Color("#999999"),  // tint the color of the png loaded for material
+          bumpScale:0.4,
+          shininess:10,
+          fog: false,
+          shading:THREE.SmoothShading
+      });
+      return paperMaterial;
+    }
 
     //import part geometry
     var loader = new THREE.STLLoader();
@@ -65,13 +69,14 @@
         tetraTrox.computeFaceNormals();
     });
 
-    function DMATetraTroxPart(type, parent){
+    function DMATetraTroxPart(type, parent, paperType){
         DMAPart.call(this, type, parent);
+        this.paperType = paperType;
     }
     DMATetraTroxPart.prototype = Object.create(DMAPart.prototype);
 
     DMATetraTroxPart.prototype._makeMeshForType = function(){
-        var mesh = new THREE.Mesh(tetraTrox, paperMaterial);
+        var mesh = new THREE.Mesh(tetraTrox, getPaperMaterial('bluePaper'));//TODO:set this in all the right places this.paperType));
         mesh.myPart = this;//need a ref back to this part
         return mesh;
     };
@@ -98,7 +103,7 @@
     DMAOctaTroxPart.prototype = Object.create(DMAPart.prototype);
 
     DMAOctaTroxPart.prototype._makeMeshForType = function(){
-        var mesh = new THREE.Mesh(octaTrox, paperMaterial);
+        var mesh = new THREE.Mesh(octaTrox, getPaperMaterial('bluePaper'));//TODO:set this in all the right places this.paperType));
         mesh.myPart = this;//need a ref back to this part
         return mesh;
     };

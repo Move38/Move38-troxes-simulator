@@ -80,10 +80,10 @@ OctaLatticeSubclasses = {
 
         },
 
-        addFreeFormCell: function(parentCellPos, parentCellOrient, direction, parentType, type){
+        addFreeFormCell: function(parentCellPos, parentCellOrient, direction, parentType, type, paperType){
             var scale = this.get("scale");
             var cells = this.get("cells");
-            cells[0][0].push(this.makeCellForLatticeType({x:0,y:0,z:cells[0][0].length}, scale, parentCellPos, parentCellOrient, direction, parentType, type));
+            cells[0][0].push(this.makeCellForLatticeType({x:0,y:0,z:cells[0][0].length}, scale, parentCellPos, parentCellOrient, direction, parentType, type, paperType));
             this.set("numCells", this.get("numCells")+1);
             dmaGlobals.three.render();
         },

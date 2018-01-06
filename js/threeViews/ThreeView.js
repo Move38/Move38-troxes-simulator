@@ -83,7 +83,7 @@ ThreeView = Backbone.View.extend({
 
 		// update stats about Troxes
         updateStats();
-        console.log('updated stats')
+        // console.log('updated stats')
     },
 
     _mouseDown: function(){
