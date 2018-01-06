@@ -80,6 +80,10 @@ ThreeView = Backbone.View.extend({
         this.mouseIsDown = false;
         this.highlighter.addRemoveVoxel(!this.appState.get("deleteMode"));
         if (dmaGlobals.lattice.get("numCells") == 0) dmaGlobals.appState.set("deleteMode", false);
+
+		// update stats about Troxes
+        updateStats();
+        console.log('updated stats')
     },
 
     _mouseDown: function(){
