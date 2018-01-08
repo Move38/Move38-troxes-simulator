@@ -259,17 +259,17 @@ AppState = Backbone.Model.extend({
 //                if (cellMode == "part") this.set("cellMode", "cell");
 //                else if (cellMode == "cell") this.set("cellMode", "part");
 //                break;
-//            case 83://s save
-//                if (e.ctrlKey || e.metaKey){//command
-//                    e.preventDefault();
-//                    if (e.shiftKey){
-//                        this.set("shift", false);
-//                        $("#saveAsModel").modal("show");
-//                    } else {
-//                        dmaGlobals.appState.saveJSON();
-//                    }
-//                }
-//                break;
+           case 83://s save
+               if (e.ctrlKey || e.metaKey){//command
+                   e.preventDefault();
+                   if (e.shiftKey){
+                       this.set("shift", false);
+                       $("#saveAsModel").modal("show");
+                   } else {
+                       dmaGlobals.appState.saveJSON();
+                   }
+               }
+               break;
 //            case 79://o open
 //                if (e.ctrlKey || e.metaKey){//command
 //                    e.preventDefault();
@@ -301,8 +301,8 @@ AppState = Backbone.Model.extend({
     saveJSON: function(name){
         if (!name) name = "lattice";
         var data = JSON.stringify({
-            lattice:this._getLatticeDataToSave(),
-            assembler: this._getAssemblerDataToSave()
+            lattice:this._getLatticeDataToSave()
+            //assembler: this._getAssemblerDataToSave()
         });
         this._saveFile(data, name, ".json");
     },
